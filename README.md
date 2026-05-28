@@ -6,7 +6,7 @@ This is my submission for the final project. How it works is you give it a pictu
 
 ## The Algorithm
 
-Add an explanation of the algorithm and how it works. Make sure to include details about how the code works, what it depends on, and any other relevant info. Add images or other descriptions for your project here. 
+My algorithm runs the image classification model that was trained with my dataset and shows the plant species along with information on how to take care of it.
 
 ## Running this project
 
