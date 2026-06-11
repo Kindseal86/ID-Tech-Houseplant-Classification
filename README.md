@@ -6,7 +6,7 @@ This is my submission for the final project. How it works is you give it a pictu
 
 ## The Algorithm
 
-My algorithm runs the image classification model that was trained with my dataset and shows the plant species along with information on how to take care of it.
+My algorithm runs the image classification model that was trained with my dataset and shows the plant species. It also displays information on how often to water it. My algorithm was retrained from the resnet18 base image classification model to recognize 18 different common houseplant species.
 
 ## Running this project
 
