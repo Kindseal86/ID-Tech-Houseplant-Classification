@@ -34,8 +34,6 @@ parser = argparse.ArgumentParser(description="Classify a live camera stream usin
 
 parser.add_argument("input", type=str, default="", nargs='?', help="URI of the input stream")
 parser.add_argument("output", type=str, default="", nargs='?', help="URI of the output stream")
-parser.add_argument("--network", type=str, default="googlenet", help="pre-trained model to load (see below for options)")
-parser.add_argument("--topK", type=int, default=1, help="show the topK number of class predictions (default: 1)")
 
 try:
 	args = parser.parse_known_args()[0]
@@ -46,12 +44,11 @@ except:
 
 
 # load the recognition network
-net = imageNet(args.network, sys.argv)
 
 # note: to hard-code the paths to load a model, the following API can be used:
 #
-# net = imageNet(model="model/resnet18.onnx", labels="model/labels.txt", 
-#                 input_blob="input_0", output_blob="output_0")
+net = imageNet(model="resnet18.onnx", labels="labels.txt", 
+                 input_blob="input_0", output_blob="output_0")
 
 # create video sources & outputs
 input = videoSource(args.input, argv=sys.argv)
@@ -66,22 +63,53 @@ while True:
     if img is None: # timeout
         continue  
 
-    # classify the image and get the topK predictions
-    # if you only want the top class, you can simply run:
-    #   class_id, confidence = net.Classify(img)
-    predictions = net.Classify(img, topK=args.topK)
+    classID, confidence = net.Classify(img)
 
     # draw predicted class labels
-    for n, (classID, confidence) in enumerate(predictions):
-        classLabel = net.GetClassLabel(classID)
-        confidence *= 100.0
+    classLabel = net.GetClassLabel(classID)
+    confidence *= 100.0
 
-        print(f"imagenet:  {confidence:05.2f}% class #{classID} ({classLabel})")
+    print(f"imagenet:  {confidence:05.2f}% class #{classID} ({classLabel})")
 
-        font.OverlayText(img, text=f"{confidence:05.2f}% {classLabel}", 
-                         x=5, y=5 + n * (font.GetSize() + 5),
+    font.OverlayText(img, text=f"{confidence:05.2f}% {classLabel}", 
+                         x=5, y=5,
                          color=font.White, background=font.Gray40)
-                         
+    if classLabel == "Aloe Vera":
+        print("Water this plant every three weeks")
+    if classLabel == "Asparagus Fern":
+        print("Water this plant every seven to ten days")
+    if classLabel == "Bird of Paradise":
+        print("Water this plant every seven to ten days")
+    if classLabel == "Chinese Money Plant":
+        print("Water this plant every seven to ten days in summer and ten to fourteen in winter")
+    if classLabel == "Daffodils":
+        print("Water this plant every week")  
+    if classLabel == "Dracaena":
+        print("Water this plant every one to two weeks")
+    if classLabel == "Dumb Cane":
+        print("Water this plant every week")
+    if classLabel == "Elephant Ear":
+        print("Water this plant one to three times a week") 
+    if classLabel == "Hyacinth":
+        print("Water this plant every one to two weeks")   
+    if classLabel == "Money Tree":
+        print("Water this plant every one to three weeks") 
+    if classLabel == "Monstera Deliciosa":
+        print("Water this plant every one to two weeks") 
+    if classLabel == "Orchid":
+        print("Water this plant every seven to ten days")
+    if classLabel == "Parlor Palm":
+        print("Water this plant every one to two weeks") 
+    if classLabel == "Polka Dot Plant":
+        print("Water this plant every three to seven days") 
+    if classLabel == "Prayer Plant":
+        print("Water this plant every five to ten days")
+    if classLabel == "Rubber Plant":
+        print("Water this plant every one to two weeks")
+    if classLabel == "Sago Palm":
+        print("Water this plant every one to two weeks")
+    if classLabel == "Tulip":
+        print("Water this plant every two to three days")           
     # render the image
     output.Render(img)
 
