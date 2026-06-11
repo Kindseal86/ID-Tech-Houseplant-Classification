@@ -2,7 +2,7 @@
 
 This is my submission for the final project. How it works is you give it a picture of a common houseplant and it will give you the species name so you can learn how to better care for it.
 
-![add image descrition here](direct image link here)
+![This is an example output image that shows the species and the confidence](https://github.com/Kindseal86/ID-Tech-Houseplant-Classification/blob/master/output.jpg)
 
 ## The Algorithm
 
@@ -10,7 +10,11 @@ My algorithm runs the image classification model that was trained with my datase
 
 ## Running this project
 
-1. Add steps for running this project.
-2. Make sure to include any required libraries that need to be installed for your project to run.
-
+1. Download the repository and the jetson-inference library
+2. Change directory into the project folder
+3. Run: `python3 Runner.py <input image> <output image>`
+   
+## Resources
 [View a video explanation here](video link)
+[Jetson-Inference Library](https://github.com/dusty-nv/jetson-inference)
+[Dataset](https://github.com/dusty-nv/jetson-inference)
