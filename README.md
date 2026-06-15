@@ -17,4 +17,4 @@ My algorithm runs the image classification model that was trained with my datase
 ## Resources
 [View a video explanation here](video link)
 [Jetson-Inference Library](https://github.com/dusty-nv/jetson-inference)
-[Dataset](https://github.com/dusty-nv/jetson-inference)
+[Dataset](https://www.kaggle.com/datasets/kacpergregorowicz/house-plant-species)
